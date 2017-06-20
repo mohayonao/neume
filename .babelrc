@@ -1,0 +1,17 @@
+{
+  "env": {
+    "cjs": {
+      "presets": [ [ "es2015", { "loose": true } ] ]
+    },
+    "umd": {
+      "presets": [ [ "es2015", { "loose": true, "modules": false } ] ]
+    },
+    "development": {
+      "presets": [ "power-assert" ],
+      "plugins": [ "transform-es2015-modules-commonjs" ]
+    },
+    "coverage": {
+      "plugins": [ "transform-es2015-modules-commonjs", "istanbul" ]
+    }
+  }
+}
