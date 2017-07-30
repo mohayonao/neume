@@ -6,6 +6,10 @@
   "bugs": {
     "url": "https://github.com/mohayonao/neume/issues"
   },
+  "dependencies": {
+    "osc-msg": "^1.2.0",
+    "synthdef-json-encoder": "^1.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-external-helpers": "^6.22.0",
