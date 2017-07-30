@@ -1,0 +1,70 @@
+{
+  "name": "neume",
+  "description": "WIP",
+  "version": "0.10.0",
+  "author": "Nao Yonamine <mohayonao@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/mohayonao/neume/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.24.1",
+    "cross-env": "^5.0.1",
+    "eslint": "^4.3.0",
+    "glob": "^7.1.2",
+    "mocha": "^3.4.2",
+    "npm-run-all": "^4.0.2",
+    "nyc": "^11.1.0",
+    "power-assert": "^1.4.4",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babili": "^3.1.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "sinon": "^2.4.1"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "dist",
+    "lib",
+    "src"
+  ],
+  "homepage": "https://github.com/mohayonao/neume/",
+  "jsnext:main": "src/index.js",
+  "keywords": [
+    "music"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohayonao/neume.git"
+  },
+  "scripts": {
+    "build": "npm run clean && run-p build:**",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel --out-dir=lib src",
+    "build:umd:dev": "cross-env NODE_ENV=development rollup -c -i src/index-browser.js -o dist/neume.js",
+    "build:umd:prod": "cross-env NODE_ENV=production rollup -c -i src/index-browser.js -o dist/neume.min.js",
+    "clean": "rimraf lib coverage .nyc_output *.log",
+    "cover": "cross-env BABEL_ENV=coverage nyc --reporter text --reporter html npm test",
+    "lint": "eslint src test",
+    "postversion": "git push && git push --tags && npm run clean",
+    "prepublish": "npm-run-all lint test build",
+    "preversion": "npm-run-all lint test",
+    "test": "mocha",
+    "travis": "npm-run-all lint test",
+    "version": "npm run build && git add -A dist"
+  }
+}
