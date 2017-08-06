@@ -10,3 +10,147 @@ html, body, #app {
   width: 100%;
   height: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/** customize react component *************************************************/
+
+/** react-split-pane **/
+.Resizer {
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.Resizer.horizontal {
+  height: 5px;
+  cursor: row-resize;
+}
+
+.Resizer.vertical {
+  width: 5px;
+  cursor: col-resize;
+}
+
+.Resizer.disabled {
+   cursor: not-allowed;
+}
+
+.Pane.vertical {
+  overflow-x: hidden;
+}
+
+/** react-tabs **/
+.react-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.react-tabs__tab-list {
+  height: 40px;
+  list-style: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  margin: 8px;
+  padding: 2px 0px;
+  outline: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  color: #999;
+  cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+  color: #fff;
+  border-bottom-color: #666;
+}
+
+.react-tabs__tab-panel {
+  display: none;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+
+.Pane.vertical.Pane2 {
+  background: #222;
+}
+
+/** atoms *********************************************************************/
+
+.delete-button {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+/** AppLayout *****************************************************************/
+
+.AppLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: Lato, sans-serif;
+}
+
+/** AppBody *******************************************************************/
+
+.AppBody {
+  position: relative;
+  flex: 1;
+  color: #fff;
+  background: #000;
+}
+
+/** AppFooter *****************************************************************/
+
+.AppFooter {
+  line-height: 22px;
+  height: 22px;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #fff;
+  background: #222;
+  border-top: solid 1px #333;
+  overflow: hidden;
+}
+
+/** PaneEditor ****************************************************************/
+.PaneEditor {
+  width: 100%;
+  height: 100%;
+}
+
+/** PaneSubView ***************************************************************/
+.PaneSubView {
+  width: 100%;
+  height: 100%;
+}
