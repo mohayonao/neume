@@ -1,11 +1,21 @@
 import url from "url";
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeEvery, fork, call, put, select } from "redux-saga/effects";
 import * as ActionTypes from "../actions/editor";
 
 let _tabId = 0;
 
 function nextTabId() {
   return ++_tabId;
+}
+
+function selectEditor(state) {
+  return state.editor;
+}
+
+export function* initEditor() {
+  const editorTab = yield select(selectEditor);
+
+  _tabId = Math.max(...editorTab.tabs.map(({ tabId }) => tabId));
 }
 
 export function* handleNewFile(/* api */) {
@@ -49,4 +59,5 @@ export default function* editorSaga(api) {
   yield takeEvery(ActionTypes.NEW_FILE, handleNewFile, api);
   yield takeEvery(ActionTypes.OPEN_FILE, handleOpenFile, api);
   yield takeEvery(ActionTypes.SAVE_FILE, handleSaveFile, api);
+  yield fork(initEditor, api);
 }

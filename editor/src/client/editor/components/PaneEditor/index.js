@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import Editor from "./Editor";
+import JSEditor from "./JSEditor";
 import DeleteButton from "../shared/DeleteButton";
 import * as actions from "../../actions";
 import * as aceUtils from "./ace/utils";
@@ -17,15 +17,6 @@ class PaneEditor extends Component {
     super(props);
 
     this._editorProps = {
-      mode: "javascript",
-      theme: "neume",
-      width: "100%",
-      height: "100%",
-      fontSize: 12,
-      showPrintMargin: false,
-      highlightActiveLine: false,
-      tabSize: 2,
-      editorProps: { $blockScrolling: true },
       focus: true,
       onChange: this._updateContent.bind(this),
       commands: aceUtils.getBindingKeyCommands(this),
@@ -104,7 +95,7 @@ class PaneEditor extends Component {
     const { tabId, content } = this.getCurrentTab();
 
     return (
-      <Editor editorProps={ this._editorProps } tabId={ tabId } content={ content } />
+      <JSEditor editorProps={ this._editorProps } tabId={ tabId } content={ content } />
     );
   }
 
@@ -128,6 +119,12 @@ class PaneEditor extends Component {
     const content = editor.getSession().getValue();
 
     this.actions.saveFile(tabId, "new-file:", content);
+  }
+
+  ["key:Command-W"]() {
+    const { tabId } = this.getCurrentTab();
+
+    this.actions.removeTab(tabId);
   }
 
   ["key:Command-["]() {

@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import AceEditor from "react-ace";
 import ace from "brace";
 
-class Editor extends Component {
+import "brace/mode/javascript";
+import "./ace/theme/neume";
+
+class JSEditor extends Component {
   constructor(props) {
     super(props);
 
@@ -36,6 +39,7 @@ class Editor extends Component {
         this._session.setUndoManager(this._dummyUndoManager);
         this._session.setValue(content);
         this._session.setUndoManager(this._undoManagers[tabId]);
+        this._editor.focus();
       }
     }
 
@@ -44,14 +48,27 @@ class Editor extends Component {
 
   render() {
     const { editorProps } = this.props;
+    const props = Object.assign({}, JSEditor.defaultProps, editorProps);
 
     return (
-      <AceEditor onLoad={ this._onLoad } { ...editorProps } />
+      <AceEditor onLoad={ this._onLoad } { ...props } />
     );
   }
 }
 
-Editor.propTypes = {
+JSEditor.defaultProps = {
+  mode: "javascript",
+  theme: "neume",
+  width: "100%",
+  height: "100%",
+  fontSize: 12,
+  showPrintMargin: false,
+  highlightActiveLine: false,
+  tabSize: 2,
+  editorProps: { $blockScrolling: true },
+};
+
+JSEditor.propTypes = {
   editorProps: PropTypes.object.isRequired,
   tabId: PropTypes.number.isRequired,
   content: PropTypes.string,
@@ -62,4 +79,4 @@ function fixKeyBindings(editor) {
   editor.commands.bindKey({ mac: "Ctrl-P" }, "golineup");
 }
 
-export default Editor;
+export default JSEditor;

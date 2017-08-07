@@ -37,6 +37,10 @@ export function appendTab(state, { tabId, uri, content }) {
 }
 
 export function removeTab(state, { tabId }) {
+  if (tabId === 0) {
+    return state;
+  }
+
   const index = findIndex(state.tabs, tabId);
 
   if (index === -1) {

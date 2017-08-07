@@ -154,3 +154,41 @@ html, body, #app {
   width: 100%;
   height: 100%;
 }
+
+/** SubViewAbout **************************************************************/
+.SubViewAbout {
+  font-weight: 100;
+}
+
+.SubViewAbout header {
+  margin: 0 10px;
+}
+
+.SubViewAbout header h1 {
+  font-weight: 100;
+}
+
+.SubViewAbout header .description {
+  font-size: 12px;
+}
+
+.SubViewAbout ul {
+  list-style: circle;
+  margin: 20px 0 0 30px;
+}
+
+.SubViewAbout li {
+  margin: 10px 0;
+}
+
+.SubViewAbout label {
+  display: block;
+}
+
+.SubViewAbout label + a {
+  color: inherit;
+}
+
+.SubViewAbout label + a:hover {
+  color: #9cdcfe;
+}
