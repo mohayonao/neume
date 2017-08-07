@@ -1,8 +1,10 @@
 const url = require("url");
 const path = require("path");
 const { app, shell, BrowserWindow } = require("electron");
+const { spawn } = require("child_process");
 
 let mainWindow = null;
+let scsynth = null;
 
 function createWindow() {
   mainWindow = new BrowserWindow();
@@ -40,4 +42,14 @@ app.on("activate", () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+app.on("will-finish-launching", () => {
+  scsynth = spawn("scsynth", [ "-u", 57150 ]);
+  scsynth.stdout.pipe(process.stdout);
+  scsynth.stderr.pipe(process.stderr);
+});
+
+app.on("will-quit", () => {
+  scsynth.kill();
 });

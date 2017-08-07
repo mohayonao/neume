@@ -31,7 +31,7 @@ export function* handleOpenFile(api) {
   const tabId = nextTabId();
   const res = yield call(api.openFile);
 
-  // TODO: res.error case
+  // TODO: res.error
 
   if (!res.error) {
     yield put(ActionTypes.appendTab(tabId, res.uri, res.content));
@@ -42,7 +42,7 @@ export function* handleSaveFile(api, { payload: { tabId, uri, content } }) {
   const res = yield call(api.saveFile, uri, content);
   const { protocol, pathname } = url.parse(uri);
 
-  // TODO: res.error case
+  // TODO: res.error
 
   if (!res.error) {
     if (protocol === "new-file:") {

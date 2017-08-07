@@ -99,6 +99,20 @@ class PaneEditor extends Component {
     );
   }
 
+  ["key:Command-Enter"](editor) {
+    const sel = aceUtils.getSelection(editor);
+
+    if (sel.code !== "") {
+      aceUtils.flashSelection(editor, sel);
+    }
+
+    this.actions.executeCode(sel.code);
+  }
+
+  ["key:Command-."]() {
+    this.actions.reset();
+  }
+
   ["key:Command-N"]() {
     this.actions.newFile();
   }
